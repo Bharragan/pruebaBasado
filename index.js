@@ -25,18 +25,17 @@ $(document).ready(function() {
         });
     }
 
-    $("#deleteButton").click(function (event) { 
-        const elementId = this.data(id).val();
-        console.log(elementId);
+    $(document).on('click', '.deletebutton', function(event) {
+        const id = $(this).data('id');
         $.ajax({
-            type: "DELETE",
-            url: `http://20.231.202.18:8000/api/form/${elementId}`,
-            success: function (response) {
-                rellenarTabla();
-            }
-            
+          url: `http://20.231.202.18:8000/api/form/${id}`,
+          method: 'DELETE',
+          success: function(response) {
+            showData();
+          }
         });
-    });
+      });
+      
 
     $("#submmitButton").click(function(event) {
         const code = this.find("#code").val();
